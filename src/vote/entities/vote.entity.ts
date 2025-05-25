@@ -11,11 +11,11 @@ export class Vote {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Field(() => String, { description: 'user id' })
+  @Field(() => UserModel, { description: 'user id' })
   @ManyToOne(() => UserModel)
   user: UserModel;
 
-  @Field(() => String, { description: 'poll id' })
+  @Field(() => Poll, { description: 'poll id' })
   @ManyToOne(() => Poll)
   poll: Poll;
 

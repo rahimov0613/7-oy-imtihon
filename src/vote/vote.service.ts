@@ -5,6 +5,7 @@ import { Vote } from './entities/vote.entity';
 import { CreateVoteInput } from './dto/create-vote.input';
 import { UserModel } from 'src/users/entities/user.model';
 import { Poll } from 'src/poll/entities/poll.entity';
+import { UpdateVoteInput } from './dto/update-vote.input';
 
 
 @Injectable()
@@ -33,7 +34,6 @@ export class VoteService {
             throw new Error('Poll not found');
         }
 
-        // 3. Oldin shu user bu pollga ovoz berganmi?
         const existingVote = await this.voteRepository.findOne({
             where: { user: { id: userId }, poll: { id: pollId as string } },
         });
@@ -56,6 +56,7 @@ export class VoteService {
             relations: ['user', 'poll'],
         });
     }
+    
     async findVoteById(id: string): Promise<Vote> {
         const vote = await this.voteRepository.findOne({
             where: { id },
@@ -66,7 +67,7 @@ export class VoteService {
         }
         return vote;
     }
-    async updateVote(id: string, input: CreateVoteInput): Promise<Vote> {
+    async updateVote(id: string, input: UpdateVoteInput): Promise<Vote> {
         const vote = await this.voteRepository.findOne({ where: { id } });
         if (!vote) {
             throw new Error('Vote not found');

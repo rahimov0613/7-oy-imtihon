@@ -1,0 +1,183 @@
+
+# # register
+
+# mutation {
+#  register(registerAuth: {
+#     name: "aliyev",
+#     email: "a@example.com",
+#     password: "secret123",
+#     role: "admin"
+# }) {
+#   name
+#   email
+#   password
+# }
+# }
+
+
+# #login
+
+# mutation{
+#   login(loginAuth:{
+#     email:"a@example.com"
+#     password:"secret123"
+#   })
+# }
+
+
+# #find all users
+
+# query{
+#   users{
+#     id
+#     name
+    
+#   }
+# }
+
+
+##find by id
+
+# query{
+#   user(id:"a9d43d97-5fa2-41ca-a626-75ca558e0288"){
+#     name
+#   }
+# }
+
+# #Update user
+
+# mutation{
+#   updateUser(updateUser:{
+#     id:"a9d43d97-5fa2-41ca-a626-75ca558e0288"
+#     name:"aziz"
+#   }
+#   ){
+#     name
+#   }
+    
+#   }
+
+# # #delete user
+# mutation{
+#   removeUser(id:"a9d43d97-5fa2-41ca-a626-75ca558e0288"){
+#     name
+#   }
+# }
+
+# #create poll
+
+# mutation{
+#   createPoll(createPollInput:{
+#     question:"qwerty"
+#     options:["kimdur","nmadur","qaysidur"]
+#     createdBy:"7423fbcf-baa9-467e-ac76-3f874c5666d1"
+    
+#   }) {
+#     id
+#     options
+#   }
+# }
+
+# # find all polls
+
+# query{
+#   getPolls{
+#     id
+#     question
+    
+#   }
+# }
+
+# # get one pool by id
+
+# query{
+# 	  getPollById(id:"542ce3a5-bf9e-431d-8d6d-6f487449915b"){
+#     question
+#   }
+# }
+
+# # update pool
+
+# mutation{
+#   updatePoll(id:"542ce3a5-bf9e-431d-8d6d-6f487449915b",updatePollInput:{
+#     question:"sevgidan kuygan chiyabo'rila"
+    
+#   }){
+#     question
+#   }
+# }
+
+# #Delete poll
+
+# mutation{
+#   removePoll(id:"542ce3a5-bf9e-431d-8d6d-6f487449915b"){
+#     question
+#   }
+# }
+
+# #Create vote
+
+# mutation{
+# createVote(createVoteInput:{
+#   userId:"7423fbcf-baa9-467e-ac76-3f874c5666d1"
+#   pollId:"b805b23d-e98c-4467-9938-a8c402a03440"
+#   selectedOption:"kimdur"
+# }
+# ){
+#   selectedOption
+# }
+# }
+
+
+# #find All votes
+
+# query {
+#   findAllVotes {
+#     id
+#     selectedOption
+#     createdAt
+
+#     user {
+#       id
+#     }
+
+#     poll {
+#       id
+#     }
+#   }
+# }
+
+
+# #find one votes
+
+# query{
+#   findVoteById(id:"6b169145-3a5c-4d1c-b044-c2d9be74589f"){
+#     id
+#     user{
+#       id
+#     }
+#     poll{
+#     id
+#   }
+#   }
+# }
+
+# #update vote
+
+# mutation{
+  
+#   updateVote(id:"6b169145-3a5c-4d1c-b044-c2d9be74589f",updateVoteInput:{
+#     selectedOption:"kimdur"
+#   }
+#   ){
+#     selectedOption
+#   }
+# }
+
+# # delete vote
+
+# mutation{
+#   deleteVote(id:"6b169145-3a5c-4d1c-b044-c2d9be74589f"){
+#    selectedOption
+#   }
+# }

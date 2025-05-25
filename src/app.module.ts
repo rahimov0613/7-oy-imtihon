@@ -11,29 +11,30 @@ import { Poll } from './poll/entities/poll.entity';
 import { Vote } from './vote/entities/vote.entity';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: '1234',
-    database: 'imtihon',
-    entities: [UserModel, Poll, Vote],
-    synchronize: true,
-    logging: true,
-    autoLoadEntities: true,
-  }),
-  GraphQLModule.forRoot<ApolloDriverConfig>({
-    driver: ApolloDriver,
-    playground: true,
-    graphiql: true,
-    autoSchemaFile: "./src/schema.gql",
-  }),
-  UsersModule,
-  AuthModule,
-  PollModule,
-  VoteModule,
-],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: '1234',
+      database: 'imtihon',
+      entities: [UserModel, Poll, Vote],
+      synchronize: true,
+      logging: true,
+      autoLoadEntities: true,
+    }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      playground: true,
+      graphiql: true,
+      autoSchemaFile: "./src/schema.gql",
+    }),
+    UsersModule,
+    AuthModule,
+    PollModule,
+    VoteModule,
+  ],
   providers: [],
   controllers: []
 
