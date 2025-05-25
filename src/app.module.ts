@@ -6,6 +6,9 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AuthModule } from './auth/auth.module';
 import { PollModule } from './poll/poll.module';
 import { VoteModule } from './vote/vote.module';
+import { UserModel } from './users/entities/user.model';
+import { Poll } from './poll/entities/poll.entity';
+import { Vote } from './vote/entities/vote.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,7 +18,7 @@ import { VoteModule } from './vote/vote.module';
     username: 'postgres',
     password: '1234',
     database: 'imtihon',
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    entities: [UserModel, Poll, Vote],
     synchronize: true,
     logging: true,
     autoLoadEntities: true,
@@ -26,9 +29,13 @@ import { VoteModule } from './vote/vote.module';
     graphiql: true,
     autoSchemaFile: "./src/schema.gql",
   }),
-    UsersModule,
-    AuthModule,
-    PollModule,
-    VoteModule],
+  UsersModule,
+  AuthModule,
+  PollModule,
+  VoteModule,
+],
+  providers: [],
+  controllers: []
+
 })
 export class AppModule { }

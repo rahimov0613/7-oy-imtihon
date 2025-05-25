@@ -21,9 +21,6 @@ export class UsersService {
   }
   async findByEmail(email: string): Promise<UserModel | null> {
     const user = await this.userRepo.findOne({ where: { email } })
-    if (!user) {
-      throw new Error('User not found');
-    }
     return user;
   }
   async findAll(): Promise<UserModel[]> {

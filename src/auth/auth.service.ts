@@ -4,7 +4,6 @@ import { LoginInput } from './dto/login-auth.input.';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { UserModel } from 'src/users/entities/user.model';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +22,7 @@ export class AuthService {
       password: hashedPassword,
     })
   }
-
+ 
   async login(loginInput: LoginInput) {
     const user = await this.userService.findByEmail(loginInput.email);
     if (!user) {
@@ -33,7 +32,7 @@ export class AuthService {
     if (!isMAtch) {
       throw new Error('Invalid password');
     }
-   const payload = { sub: user.id, email: user.email, role: user.role };
+    const payload = { sub: user.id, email: user.email, role: user.role };
     const accessToken = this.jwtService.sign(payload);
     return accessToken;
   }

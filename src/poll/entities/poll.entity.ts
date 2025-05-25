@@ -1,6 +1,6 @@
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from 'src/users/entities/user.entity';
+import { UserModel } from 'src/users/entities/user.model';
 
 @Entity()
 @ObjectType()
@@ -21,9 +21,9 @@ export class Poll {
   @Column({ default: true })
   isActive: boolean;
 
-  @Field(() => User) 
-  @ManyToOne(() => User)
-  createdBy: User;
+  @Field(() => UserModel) 
+  @ManyToOne(() => UserModel)
+  createdBy: UserModel;
 
   @Field(() => Date, { description: 'createdAt' })
   @CreateDateColumn()

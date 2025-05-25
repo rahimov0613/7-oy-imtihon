@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
+type UserModel {
   """id"""
   id: String!
 
@@ -19,18 +19,46 @@ type User {
   role: String!
 }
 
+type Poll {
+  """id"""
+  id: String!
+
+  """question"""
+  question: String!
+
+  """options"""
+  options: [String!]!
+
+  """isActive"""
+  isActive: Boolean!
+  createdBy: UserModel!
+
+  """createdAt"""
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
-  users: [User!]!
-  user(id: Int!): User!
-  userByEmail(email: String!): User!
+  users: [UserModel!]!
+  user(id: String!): UserModel!
+  userByEmail(email: String!): UserModel!
+  getPolls: [Poll!]!
+  getPollById(id: String!): Poll!
 }
 
 type Mutation {
-  createUser(createUser: CreateUser!): User!
-  updateUser(updateUser: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
-  register(registerAuth: RegisterInput!): User!
+  createUser(createUser: CreateUser!): UserModel!
+  updateUser(updateUser: UpdateUserInput!): UserModel!
+  removeUser(id: String!): UserModel!
+  register(registerAuth: RegisterInput!): UserModel!
   login(loginAuth: LoginInput!): String!
+  createPoll(createPollInput: CreatePollInput!): Poll!
+  updatePoll(id: String!, updatePollInput: UpdatePollInput!): Poll!
+  removePoll(id: String!): Poll!
 }
 
 input CreateUser {
@@ -59,7 +87,9 @@ input UpdateUserInput {
 
   """user role"""
   role: String
-  id: Int!
+
+  """user id"""
+  id: String!
 }
 
 input RegisterInput {
@@ -72,4 +102,26 @@ input RegisterInput {
 input LoginInput {
   email: String!
   password: String!
+}
+
+input CreatePollInput {
+  """question"""
+  question: String!
+
+  """options"""
+  options: [String!]!
+
+  """createdBy"""
+  createdBy: String!
+}
+
+input UpdatePollInput {
+  """question"""
+  question: String
+
+  """options"""
+  options: [String!]
+
+  """createdBy"""
+  createdBy: String
 }
